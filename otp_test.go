@@ -12,6 +12,9 @@ func TestNewHOTP(t *testing.T) {
 		generator, err := NewHOTP(algorithm, nil, 6)
 		assert.NoError(t, err)
 		assert.IsType(t, &hotpManager{}, generator)
+		hotp := generator.(*hotpManager)
+		assert.NotNil(t, hotp.secret)
+		assert.Len(t, hotp.secret, algorithm.defaultKeyByteSize())
 	}
 }
 

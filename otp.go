@@ -30,11 +30,11 @@ const (
 )
 
 const (
-	// Maximum digits of password code.
+	// maxCodeDigits represents maximum digits of password code.
 	maxCodeDigits = 8
 )
 
-// Gets the hash function specified by the algorithm enum.
+// hash gets the hash function specified by the algorithm enum.
 func (algorithm HashAlgorithm) hash() (func() hash.Hash, error) {
 	switch algorithm {
 	case HashAlgorithmSHA1:
@@ -48,19 +48,23 @@ func (algorithm HashAlgorithm) hash() (func() hash.Hash, error) {
 	}
 }
 
-// Generate new secret key.
-func (algorithm HashAlgorithm) generateSecret() ([]byte, error) {
-	var keyByteSize int
+// defaultKeyByteSize gets the default value of HMAC key size in bytes.
+func (algorithm HashAlgorithm) defaultKeyByteSize() int {
 	switch algorithm {
 	case HashAlgorithmSHA1:
-		keyByteSize = 20
+		return 20
 	case HashAlgorithmSHA256:
-		keyByteSize = 32
+		return 32
 	case HashAlgorithmSHA512:
-		keyByteSize = 64
+		return 64
 	default:
 		panic("unknown hash algorithm")
 	}
+}
+
+// generateSecret generates a new secret key.
+func (algorithm HashAlgorithm) generateSecret() ([]byte, error) {
+	keyByteSize := algorithm.defaultKeyByteSize()
 	secret := make([]byte, keyByteSize)
 	_, err := rand.Read(secret)
 	if err != nil {
