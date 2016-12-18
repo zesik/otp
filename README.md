@@ -1,5 +1,10 @@
 # otp
 
+[![GoDoc](https://godoc.org/github.com/zesik/otp?status.svg)](https://godoc.org/github.com/zesik/otp)
+[![Build Status](https://travis-ci.org/zesik/otp.svg?branch=master)](https://travis-ci.org/zesik/otp)
+[![Coverage Status](https://coveralls.io/repos/github/zesik/otp/badge.svg?branch=master)](https://coveralls.io/github/zesik/otp?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/zesik/otp)](https://goreportcard.com/report/github.com/zesik/otp)
+
 Package `otp` is an implementation of HMAC-based one-time password algorithm (RFC 4226) and
 time-based one-time password algorithm (RFC 6238).
 
