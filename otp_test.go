@@ -100,17 +100,17 @@ func TestTOTPValidateBackwardForward(t *testing.T) {
 	secret, _ := hex.DecodeString("3132333435363738393031323334353637383930")
 	generator, err := NewTOTP(HashAlgorithmSHA1, secret, 8, 30, 1, 2)
 	assert.NoError(t, err)
-	match := generator.Validate(1234567900 - 90, "89005924")
+	match := generator.Validate(1234567900-90, "89005924")
 	assert.False(t, match)
-	match = generator.Validate(1234567900 - 60, "89005924")
+	match = generator.Validate(1234567900-60, "89005924")
 	assert.True(t, match)
-	match = generator.Validate(1234567900 - 30, "89005924")
+	match = generator.Validate(1234567900-30, "89005924")
 	assert.True(t, match)
 	match = generator.Validate(1234567900, "89005924")
 	assert.True(t, match)
-	match = generator.Validate(1234567900 + 30, "89005924")
+	match = generator.Validate(1234567900+30, "89005924")
 	assert.True(t, match)
-	match = generator.Validate(1234567900 + 60, "89005924")
+	match = generator.Validate(1234567900+60, "89005924")
 	assert.False(t, match)
 }
 
@@ -139,8 +139,8 @@ type totpTestVector struct {
 	HashAlgorithm   HashAlgorithm
 	HexSecretString string
 	CodeDigits      int
-	TimeStep    	int
-	Epoch		int64
+	TimeStep        int
+	Epoch           int64
 	Expected        string
 }
 
