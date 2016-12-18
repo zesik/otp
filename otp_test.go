@@ -14,7 +14,8 @@ func TestNewHOTP(t *testing.T) {
 		assert.IsType(t, &hotpManager{}, generator)
 		hotp := generator.(*hotpManager)
 		assert.NotNil(t, hotp.secret)
-		assert.Len(t, hotp.secret, algorithm.defaultKeyByteSize())
+		keySize, _ := algorithm.DefaultKeyByteSize()
+		assert.Len(t, hotp.secret, keySize)
 	}
 }
 

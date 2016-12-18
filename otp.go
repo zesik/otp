@@ -48,23 +48,23 @@ func (algorithm HashAlgorithm) hash() (func() hash.Hash, error) {
 	}
 }
 
-// defaultKeyByteSize gets the default value of HMAC key size in bytes.
-func (algorithm HashAlgorithm) defaultKeyByteSize() int {
+// DefaultKeyByteSize gets the default value of HMAC key size in bytes.
+func (algorithm HashAlgorithm) DefaultKeyByteSize() (int, error) {
 	switch algorithm {
 	case HashAlgorithmSHA1:
-		return 20
+		return 20, nil
 	case HashAlgorithmSHA256:
-		return 32
+		return 32, nil
 	case HashAlgorithmSHA512:
-		return 64
+		return 64, nil
 	default:
-		panic("unknown hash algorithm")
+		return 0, errors.New("unknown hash algorithm")
 	}
 }
 
 // generateSecret generates a new secret key.
 func (algorithm HashAlgorithm) generateSecret() ([]byte, error) {
-	keyByteSize := algorithm.defaultKeyByteSize()
+	keyByteSize, _ := algorithm.DefaultKeyByteSize()
 	secret := make([]byte, keyByteSize)
 	_, err := rand.Read(secret)
 	if err != nil {
