@@ -6,7 +6,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/zesik/otp)](https://goreportcard.com/report/github.com/zesik/otp)
 
 Package `otp` is an implementation of HMAC-based one-time password algorithm (RFC 4226) and
-time-based one-time password algorithm (RFC 6238).
+time-based one-time password algorithm (RFC 6238) for Go.
 
 ## Install
 
